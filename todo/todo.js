@@ -30,6 +30,13 @@ const listTasks = () =>{
         console.log(`${index + 1}. ${task.task}`);
     });
 }
+
+const removeTask = (index) => {
+    const tasks = loadTasks();
+    const newTasks = tasks.filter((task, i) => i !== index);
+    saveTasks(newTasks);
+    console.log("Task removed");
+}
 const command = process.argv[2] ;
 const argument = process.argv[3] ;
 
