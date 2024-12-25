@@ -1,3 +1,4 @@
+const { log } = require('console');
 const fs = require('fs') ;
 const filePath  = "./tasks.json" ;
 
@@ -14,14 +15,21 @@ const loadTasks = () => {
 const saveTasks = (tasks) => {
     const dataJSON = JSON.stringify(tasks)
     fs.writeFileSync(filePath, dataJSON)
-    console.log("Task added", task)
+   
 }
 const addTask = (task) =>{
     const tasks = loadTasks();
-    tasks.push(task);
+    tasks.push({task});
     saveTasks(tasks);
+     console.log("Task added", task);
 }
 
+const listTasks = () =>{
+    const tasks = loadTasks()
+    tasks.forEach((task, index) => {
+        console.log(`${index + 1}. ${task.task}`);
+    });
+}
 const command = process.argv[2] ;
 const argument = process.argv[3] ;
 
